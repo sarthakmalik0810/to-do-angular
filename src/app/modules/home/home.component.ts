@@ -70,6 +70,10 @@ export class HomeComponent implements OnInit {
   setPercentage() {
     let percent = ((this.done.length / this.tasks.length)*100).toFixed();
     console.log(percent);
+    if(!parseFloat(percent)) {
+    this.percentage = 0;
+      return;
+    }
     this.percentage = parseFloat(percent);
   }
 
