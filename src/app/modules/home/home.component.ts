@@ -10,6 +10,7 @@ import { Task } from 'src/app/interfaces/task';
 import { AddTaskDialogService } from 'src/app/services/add-task-dialog.service';
 import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
 import { TaskService } from 'src/app/services/task.service';
+import { DateTime } from 'luxon';
 import { AddTaskComponent } from 'src/app/shared/add-task/add-task.component';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 
@@ -45,7 +46,17 @@ export class HomeComponent implements OnInit {
     private taskService: TaskService
   ) {
     this.tasks = this.taskService.getAllTasks();
-    this.todos = this.tasks.filter((task) => task.progress == 'todo');
+    this.todos = this.tasks.filter((task) => task.progress == 'todo').sort((a,b) => {
+      if(DateTime.fromISO(a.deadline) > DateTime.fromISO(b.deadline)){
+        return -1;
+      }
+      else if (DateTime.fromISO(a.deadline) < DateTime.fromISO(b.deadline)) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    });
     console.log(this.todos);
     this.inProgress = this.tasks
       .filter((task) => task.progress === 'inProgress')
@@ -68,11 +79,21 @@ export class HomeComponent implements OnInit {
 
   getTasks() {
     this.tasks = this.taskService.getAllTasks();
-    this.todos = this.tasks.filter((task) => task.progress == 'todo');
+    this.todos = this.tasks.filter((task) => task.progress == 'todo').sort((a,b) => {
+      if(DateTime.fromISO(a.deadline) > DateTime.fromISO(b.deadline)){
+        return -1;
+      }
+      else if (DateTime.fromISO(a.deadline) < DateTime.fromISO(b.deadline)) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    });
     console.log(this.todos);
     this.inProgress = this.tasks.filter(
       (task) => task.progress === 'inProgress'
-    );
+    )
     this.inProgress.sort((a, b) => a.order - b.order);
     this.done = this.tasks
       .filter((task) => task.progress === 'done')
