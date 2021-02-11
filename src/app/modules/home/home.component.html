@@ -25,6 +25,7 @@
             class="list example-list"
             cdkDropList
             id="todoList"
+            [cdkDropListSortingDisabled]="true"
             [cdkDropListData]="todos"
             [cdkDropListConnectedTo]="['inProgressList']"
             (cdkDropListDropped)="onDrop($event)"
