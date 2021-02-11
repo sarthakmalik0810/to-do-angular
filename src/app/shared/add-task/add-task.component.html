@@ -1,0 +1,105 @@
+<div class="main">
+  <h2 mat-dialog-mat-dialog-title *ngIf="addForm">Add Task</h2>
+  <h2 mat-dialog-mat-dialog-title *ngIf="!addForm">Edit Task</h2>
+  <mat-dialog-content>
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="title" class="form-label">Task Title*</label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          placeholder="Max 15 characters"
+          formControlName="title"
+          maxlength="15"
+        /></div>
+      <div class="form-group">
+        <label for="description" class="form-label">Task Description</label>
+        <textarea
+        class="form-control"
+          formControlName="description"
+          id="description"
+          rows="3"
+        ></textarea>
+      </div>
+      <div class="form-group">
+
+        <select title="Select Priority" id="priority" class="form-select"formControlName="priority" aria-label="Default select example">
+          <option value="" disabled selected>Please select Priority</option>
+          <option value="high">High</option>
+          <option value="normal">Normal</option>
+          <option value="low">Low</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="date">Choose Deadline</label>
+          <input
+          class="form-control"
+          ngbDatepicker
+          id="date"
+          (click)="datePicker.toggle()"
+          #datePicker="ngbDatepicker"
+          formControlName="deadlineDate"
+          placeholder="yyyy-mm-dd"
+        /></div>
+        <div class="form-group">
+          <label class="form-label" for="time">Time</label>
+          <ngb-timepicker
+          id="time"
+          formControlName="deadlineTime"
+          meridian="meridian"
+        ></ngb-timepicker>
+        </div>
+        
+      <!-- <mat-form-field>
+        <mat-label>Task Title</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Max 30 characters*"
+          formControlName="title"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          formControlName="description"
+          cols="30"
+          rows="10"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Priority</mat-label>
+        <mat-select matNativeControl formControlName="priority">
+          <mat-option value="low">Low</mat-option>
+          <mat-option value="normal">Normal</mat-option>
+          <mat-option value="high">High</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Input disabled</mat-label>
+        <input
+          type="datetime"
+          matInput
+          [matDatepicker]="deadlinePicker"
+          disabled
+          formControlName="deadline"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="deadlinePicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #deadlinePicker disabled="false"></mat-datepicker>
+      </mat-form-field> -->
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button [disabled]="form.invalid" *ngIf="addForm" (click)="confirm()">Add</button>
+    <button mat-button [disabled]="form.invalid" *ngIf="!addForm" (click)="confirmEdit()">Edit</button>
+  </mat-dialog-actions>
+</div>

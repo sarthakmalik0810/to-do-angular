@@ -1,0 +1,154 @@
+<div class="main">
+  <nav class="top-nav">
+    <p class="logo">Daily Task Manager</p>
+    <div class="score">
+      <h1>Progress:</h1>
+      <h1 [ngClass]="getCustomCss()" style="display: inline-block">
+        {{ percentage }}%
+      </h1>
+    </div>
+    <button mat-raised-button color="accent" (click)="openAddDialog()">
+      Add Task
+    </button>
+  </nav>
+  <!-- <div style="display: flex;" class="score">
+
+    <h1>Progress:</h1><h1 [ngClass]="getCustomCss()" style="display: inline-block;">{{percentage}}%</h1>
+  </div> -->
+  <div class="board">
+    <div class="list-wrapper">
+      <div class="list-container">
+        <div class="todo-container column-container">
+          <h2>To Do</h2>
+          <div
+            *ngIf="todos"
+            class="list example-list"
+            cdkDropList
+            id="todoList"
+            [cdkDropListData]="todos"
+            [cdkDropListConnectedTo]="['inProgressList']"
+            (cdkDropListDropped)="onDrop($event)"
+          >
+            <div
+              class="example-box"
+              [cdkDragData]="todo"
+              *ngFor="let todo of todos"
+              cdkDrag
+            >
+              <div class="todoCard task-card">
+                <div [ngSwitch]="todo.priority">
+                  <i
+                    class="fa fa-arrow-up"
+                    *ngSwitchCase="'high'"
+                    aria-hidden="true"
+                  ></i>
+                  <i
+                    class="fa fa-minus"
+                    *ngSwitchCase="'normal'"
+                    aria-hidden="true"
+                  ></i>
+                  <i
+                    class="fa fa-arrow-down"
+                    *ngSwitchCase="'low'"
+                    aria-hidden="true"
+                  ></i>
+                </div>
+                <h2>{{ todo.title }}</h2>
+                <ul style="font-size: 20px">
+                  <li (click)="editHandler(todo)">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </li>
+                  <li (click)="deleteHandler(todo)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="inProgress-container column-container">
+          <h2>In Progress</h2>
+          <div
+            class="list example-list"
+            cdkDropList
+            id="inProgressList"
+            [cdkDropListData]="inProgress"
+            [cdkDropListConnectedTo]="['doneList']"
+            (cdkDropListDropped)="onDrop($event)"
+          >
+            <div
+              class="example-box"
+              *ngFor="let complete of inProgress"
+              [cdkDragData]="complete"
+              cdkDrag
+            >
+              <div class="inProgressCard task-card">
+                <div>
+                  <div [ngSwitch]="complete.priority">
+                    <i
+                      class="fa fa-arrow-up"
+                      *ngSwitchCase="'high'"
+                      aria-hidden="true"
+                    ></i>
+                    <i
+                      class="fa fa-minus"
+                      *ngSwitchCase="'normal'"
+                      aria-hidden="true"
+                    ></i>
+                    <i
+                      class="fa fa-arrow-down"
+                      *ngSwitchCase="'low'"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                </div>
+
+                <h2>{{ complete.title }}</h2>
+                <ul style="font-size: 20px">
+                  <li (click)="editHandler(complete)">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </li>
+                  <li (click)="deleteHandler(complete)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="done-container column-container">
+          <h2>Done</h2>
+          <div
+            class="list example-list"
+            cdkDropList
+            id="doneList"
+            [cdkDropListData]="done"
+            [cdkDropListConnectedTo]="['inProgressList']"
+            (cdkDropListDropped)="onDrop($event)"
+          >
+            <div
+              class="example-box"
+              [cdkDragData]="complete"
+              *ngFor="let complete of done"
+              cdkDrag
+            >
+              <div class="doneCard task-card">
+                <div>
+                  <i class="fa fa-check-circle" aria-hidden="true"></i>
+                </div>
+                <h2>{{ complete.title }}</h2>
+                <ul style="font-size: 20px">
+                  <li (click)="deleteHandler(complete)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,320 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
+.top-nav {
+  height: 3rem;
+  background-color: #fbc02d;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 1rem;
+  position: fixed;
+  top: 0;
+  line-height: 2.5rem;
+  z-index: 999;
+
+  .score {
+    display: flex;
+    h1 {
+      margin-bottom: 0px;
+      margin-right: 10px;
+    }
+    
+  }
+  button {
+    margin-right: 10px;
+  }
+}
+
+.column-container {
+  min-width: 260px;
+  flex-grow: 1;
+}
+
+.board {
+  display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 0;
+    min-height: 0;
+}
+
+.example-box {
+  width: 95%;
+  height: 50px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+
+
+  .todoCard {
+    width: 100%;
+    height: 100%;
+    background-color: orange;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    
+
+    i {
+      margin-left: 5px;
+    }
+
+    h2 {
+      margin-left: 10px;
+      margin-bottom: 0 !important;
+    }
+
+    ul {
+      padding-top: 0;
+      margin-left: auto;
+      display: flex;
+      line-height: 30px;
+      i.fa {
+        display: inline-block;
+        border-radius: 60px;
+        padding: 0 5px;
+      }
+
+      i.fa:hover {
+        cursor: pointer;
+      }
+
+      i.fa:active {
+        color: rgb(80, 80, 82);
+      }
+    }
+  }
+
+  .inProgressCard {
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 5px;
+
+    i {
+      margin-left: 5px;
+    }
+
+    h2 {
+      margin-bottom: 0 !important;
+      margin-left: 10px;
+    }
+
+    ul {
+      padding-top: 0;
+      margin-left: auto;
+      display: flex;
+      line-height: 30px;
+      i.fa {
+        display: inline-block;
+        border-radius: 60px;
+        padding: 0 5px;
+      }
+
+      i.fa:hover {
+        cursor: pointer;
+      }
+
+      i.fa:active {
+        color: rgb(80, 80, 82);
+      }
+    }
+  }
+
+  .doneCard {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(5, 197, 5);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 5px;
+
+    i {
+      margin-left: 5px;
+    }
+
+    h2 {
+      margin-bottom: 0 !important;
+      margin-left: 10px;
+      text-decoration: line-through;
+    }
+
+    ul {
+      padding-top: 0;
+      margin-left: auto;
+      display: flex;
+      line-height: 30px;
+      i.fa {
+        display: inline-block;
+        border-radius: 60px;
+        padding: 0 5px;
+      }
+
+      i.fa:hover {
+        cursor: pointer;
+      }
+
+      i.fa:active {
+        color: rgb(80, 80, 82);
+      }
+    }
+  }
+}
+
+.logo {
+  display: inline-block;
+  padding: 0px !important;
+  margin-right: auto;
+  margin-bottom: 0;
+  font-size: 2rem;
+  font-family: "Roboto", sans-serif;
+  -ms-webkit-user-select: none;
+  -moz-webkit-user-select: none;
+  -webkit-user-select: none;
+}
+
+.list-wrapper {
+  display: flex;
+  flex-grow: 1;
+  overflow-x: auto;
+}
+
+.list-container {
+  margin: 0 auto;
+  padding-top: 6vh;
+  height: 100vh;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.column-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 0; // to force the columns to all be the same size, regardless of content
+
+  min-width: 300px;
+  margin: 50px;
+  padding: 25px;
+
+  border-radius: 4px;
+
+  background: rgba(white, 0.5);
+
+  &:not(:first-child) {
+    margin-left: 0;
+  }
+}
+
+mat-card {
+  margin: 1em;
+  cursor: pointer;
+}
+
+.list {
+  border-radius: 2px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.list-item {
+  margin: 10px;
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
+    0 3px 14px 2px rgba(0, 0, 0, 0.05);
+}
+
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+a {
+  text-decoration: none;
+  color: dodgerblue;
+}
+
+.dialog-responsive {
+  width: 40%;
+}
+
+@media only screen and (max-width: 760px) {
+  .dialog-responsive {
+      width: 100%;
+  }
+}
+
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.amber {
+  color: rgb(219, 98, 18);
+}
